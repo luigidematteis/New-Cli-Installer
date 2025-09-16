@@ -923,9 +923,9 @@ auto select_mount_opts(std::string_view partition, std::string_view fstype, bool
     auto& config_data     = config_instance->data();
 
     // reset
-    // config_data["fs_opts"] = std::vector<std::string>{};
+    config_data["fs_opts"] = std::vector<std::string>{};
     // populate mount opts
-    // utils::select_filesystem(fstype);
+    utils::select_filesystem(fstype);
 
     // check populated options
     const auto& fs_opts = std::get<std::vector<std::string>>(config_data["fs_opts"]);
