@@ -1757,6 +1757,13 @@ auto select_root_partition_info() noexcept -> std::optional<RootPartitionSelecti
             success           = true;
             screen.ExitLoopClosure()();
         };
+
+        spdlog::set_level(spdlog::level::debug);
+        spdlog::debug("PARTITIONS config contains {} entries:", partitions_lines.size());
+        for (size_t i = 0; i < partitions_lines.size(); ++i) {
+            spdlog::debug("PARTITIONS[{}]: '{}'", i, partitions_lines[i]);
+        }
+
         /* clang-format off */
         static constexpr auto sel_root_body = "\nSelect ROOT Partition.\nThis is where CachyOS will be installed.\n"sv;
         detail::menu_widget(partitions_lines, ok_callback, &selected, &screen, sel_root_body, {.text_size = size(HEIGHT, GREATER_THAN, 1)});
